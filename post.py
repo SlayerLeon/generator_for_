@@ -46,11 +46,12 @@ print('Generator of links for Yandex.Disk and Pastebin.com')
 # Для скрытия работы Selenium в браузере и ссылка на chromedriver для работы selenium в Chrome Browser
 
 ## driver = webdriver.Chrome('C:\\Users\\User\\Desktop\\chromedriver.exe')
+username = str(input("PLease, enter your username this PC: \n"))
 options = Options()
 options.add_argument("headless")
 options.headless = True
 options.add_argument('--disable-gpu')
-driver = webdriver.Chrome('C:\\Users\\Slayer\\Desktop\\Github\\generator_for_\\chromedriver.exe', options=options)
+driver = webdriver.Chrome(f'C:\\Users\\{username}\\Desktop\\Github\\generator_for_\\chromedriver.exe', options=options)
 
 # ТЕЛО СКРИПТА
 

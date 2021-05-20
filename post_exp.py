@@ -29,7 +29,7 @@ from setuptools import *
 # import jit
 import setuptools
 from pyfiglet import Figlet
-from locorama import Fore, Back, Style
+from colorama import Fore, Back, Style
 # Просто ляпота :)
 Author = 'SlayerLeon'
 name = 'Generator For'
@@ -59,8 +59,9 @@ driver = webdriver.Chrome('C:\\Users\\Slayer\\Desktop\\Github\\generator_for_\\c
 
 
 def main0():
-#   query = input(str('If you want close is program, then enter Y/y, otherwise N/n? \n'))
+#
     loc = 0     # переменная для подсчёта строк ссылок
+    service = str(input('Select service (pastebin | yandex.disk):'+'\n'))
     # СЮДА РАЗВЕРНУТЬ main1()
     if service == 'yandex.disk':
         main1(m)
@@ -181,41 +182,37 @@ def pstb_main2():
             Сделать возможность работы Selenium в скрытом режиме
             + до тех пор, пока не будет положительного результата
             '''
-def yc_pluse():
+def yc_pluse(loc):
     '''
     Взаимодействие с положительным результатом yandex.disk
     '''
-    nonlocal loc
     loc = str(loc)
     print(loc+' '+'+'+' '+res1+'\n')
     print(loc+' '+'+'+' '+res2+'\n')
     loc = int(loc)
     loc = loc+1
-def yc_minus():
+def yc_minus(loc):
     '''
     Нежелательный результат yandex.disk
     '''
-    nonlocal loc
     loc = str(loc)
     print(loc+' '+'-'+' '+res1+'\n')
     print(loc+' '+'-'+' '+res2+'\n')
     loc = int(loc)
     loc = loc+1
-def pstb_pluse():
+def pstb_pluse(loc):
     '''
     Взаимодействие с положительным результатом pastebin.com
     '''
-    nonlocal loc
     loc = str(loc)
     print(loc+' '+'+'+' '+res0+'\n')
     loc = int(loc)
     loc = loc+1
 
-def pstb_minus():
+def pstb_minus(loc):
     '''
     Нежелательный результат pastebin.com
     '''
-    nonlocal loc
     loc = str(loc)
     print(loc+' '+'-'+' '+res0+'\n')
     loc = int(loc)
@@ -229,9 +226,10 @@ def pstb_minus():
 
 
 
-
+query = str(input('If you want close is program, then enter Y/y, otherwise N/n? \n'))
 while (query == 'n') or (query == 'N'):
 #   <ОСНОВНОЙ КОД> main0()
+    main0()
 else:
     if (query == 'y') or (query == 'Y'):
         sys.exit()
@@ -260,7 +258,6 @@ else:
 
 
 
-service = str(input('Select service (pastebin | yandex.disk):'+'\n'))
 '''
 Подумать над оформлением query в коде
 '''

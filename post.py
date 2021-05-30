@@ -127,8 +127,8 @@ while (query == 'n') or (query == 'N'):
                         yc_pluse()
                     else:
                         yc_minus()
-            else:
-                print('ERROR : 00/0_NoSuchElement')
+            # else:
+            #     print('ERROR : 00/0_NoSuchElement')
 
     elif service == 'pastebin':
         col = 0
@@ -140,49 +140,57 @@ while (query == 'n') or (query == 'N'):
             random.shuffle(chars)
             link = ''.join([random.choice(chars) for x in range(length)])
             res0 = str(f'https://pastebin.com/{link}')
-##          res1 = str(f'https://pastebin.com/u/{link}'+'\n')
+            # res1 = str(f'https://pastebin.com/u/{link}'+'\n')
 ##          Generate link on users
             '''Transition on link at value res1 and work with html'''
-            if (res0 != True):
-                random.shuffle(chars)
-                link = ''.join([random.choice(chars) for x in range(length)])
-                res0 = str(f'https://pastebin.com/{link}')
-                def pstb_pluse():
-                    global col
-                    col = str(col)
-                    print(col+' '+'+'+' '+res0+'\n')
-                    col = int(col)
-                    col = col+1
-                def pstb_minus():
-                    global col
-                    col = str(col)
-                    print(col+' '+'-'+' '+res0+'\n')
-                    col = int(col)
-                    col = col+1
+            # if (res0 != True):
+            # random.shuffle(chars)
+            # link = ''.join([random.choice(chars) for x in range(length)])
+            # res0 = str(f'https://pastebin.com/{link}')
 
-                driver.get(res0)
-                try:
-                    pstb0 = driver.find_elements_by_class_name('username')
-                    if (pstb0 == True):
-                        pstb_pluse()
-                    else:
-                        pstb_minus()
-                except NoSuchElementException:
-                    pstb1 = driver.find_elements(By.XPATH, '//div[1]/div[2]/div[1]/div[1]/div[1]/div[3]/div[2]/div[1]')
-                    if (pstb1 == True):
-                        pstb_pluse()
-                    else:
-                        pstb_minus()
-                except NoSuchElementException:
-                    pstb2 = driver.find_elements_by_class_name('info-top')
-                    if (pstb2 == True):
-                        pstb_pluse()
-                    else:
-                        pstb_minus()
-                finally:
-                    pass
-            else:
-                print('ERROR : 00/1_NoSuchElement')
+            def pstb_pluse():
+                global col
+                col = str(col)
+                print(col+' '+'+'+' '+res0+'\n')
+                col = int(col)
+                col = col+1
+
+            def pstb_minus():
+                global col
+                col = str(col)
+                print(col+' '+'-'+' '+res0+'\n')
+                col = int(col)
+                col = col+1
+
+            driver.get(res0)
+            try:
+                pstb0 = driver.find_elements_by_class_name('username')
+                if (pstb0 == True):
+                    pstb_pluse()
+                else:
+                    pstb_minus()
+            except Exception:
+                # /html/body/div[1]/div[2]/div[1]/div[2]/div[1] до Not Found #404
+                # /html/body/div[1]/div[2]/div[1]/div[2]/div[1]/div[3]/div[1]/h1 до username
+                # /html/body/div[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/h1 до username
+                # pstb1 = driver.find_elements(By.XPATH, '//div[1]/div[2]/div[1]/div[1]/div[1]/div[3]/div[2]/div[1]')
+                pstb11 = driver.find_elements(By.XPATH, '//div[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/h1')
+                pstb10 = driver.find_elements(By.XPATH, '//div[1]/div[2]/div[1]/div[2]/div[1]/div[3]/div[1]/h1')
+                pstb2 = driver.find_elements_by_class_name('info-top')
+                if (pstb11 == True) or (pstb10 == True) or (pstb2 == True):
+                    pstb_pluse()
+                else:
+                    pstb_minus()
+            # except NoSuchElementException:
+            #     pstb2 = driver.find_elements_by_class_name('info-top')
+            #     if (pstb2 == True):
+            #         pstb_pluse()
+            #     else:
+            #         pstb_minus()
+            # finally:
+            #     pass
+            # else:
+            #     print('ERROR : 00/1_NoSuchElement')
 
                 '''
                 WRITE SELECTED LINKS IN RESULT

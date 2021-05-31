@@ -61,7 +61,6 @@ def QoL():
         except Exception:
             print('Value Error')
 
-
 def decor2(f2):
     def wrapper2(res0):
         global loc
@@ -78,6 +77,7 @@ def ydp(res1, res2):
     '''
     print(loc + ' ' + '+' + ' ' + res1 + '\n')
     print(loc + ' ' + '+' + ' ' + res2 + '\n')
+
 @decor2
 def ydm(res1, res2):
     '''
@@ -101,6 +101,7 @@ def pstbm(res0):
     print(loc + ' ' + '-' + ' ' + res0 + '\n')
 
 def start(loc):
+# global loc
     query = input(str('If you want close is program, then enter Y/y, otherwise N/n? \n'))
 
     while True:
@@ -132,11 +133,13 @@ def decor(f):
 @decor
 def pastebin(link):
     '''
-    Данная функция проверяет только одну ссылку для pastebin по 4 параметрам
+    Данная функция проверяет только одну ссылку для pastebin по 4 параметрам.
+    В дальнейшем, возможно, что сделаю многопоточную проверку каждой ссылки: 
+    То есть будет 4 потока и каждый поток будет проверять за один проход одну и ту же ссылку.
+    В процессе разработки данного функционала понадобиться в декорируемую функцию поместить 5 функций второго порядка, среди которых будет 1 декоратор...
+    Однако нельзя забывать и о том, что декораторы увеличивают время выполнения программы
     '''
     res0 = str(f'https://pastebin.com/{link}')
-    # pstbp(res0)
-    # pstbm(res0)
     driver.get(res0)
     try:
         pstb0 = driver.find_elements_by_class_name('username')
